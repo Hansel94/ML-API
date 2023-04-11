@@ -151,7 +151,8 @@ def feedback():
     # already provided in settings.py module (settings.FEEDBACK_FILEPATH)
     # TODO
     if report:
-        raise NotImplementedError
+        with open(settings.FEEDBACK_FILEPATH, "w") as report_file:
+            report_file.write(str(report))
 
     # Don't change this line
     return render_template("index.html")

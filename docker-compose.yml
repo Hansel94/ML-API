@@ -20,8 +20,8 @@ services:
       - redis
       - model
     volumes:
-      - ./feedback:/src/feedback
-      - ./uploads:/src/static/uploads
+      - ./feedback:/home/api/feedback
+      - ./uploads:/home/api/static/uploads
 
   redis:
     image: redis:6.2.6
@@ -38,4 +38,4 @@ services:
     depends_on:
       - redis
     volumes:
-      - ./uploads:/src/uploads
+      - ./uploads:/home/model_image/uploads
