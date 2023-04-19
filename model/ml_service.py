@@ -41,11 +41,8 @@ def predict(image_name):
         Model predicted class as a string and the corresponding confidence
         score as a number.
     """
-    class_name = None
-    pred_probability = None
-
     # TODO
-    img = image.load_img(image_name, target_size = (224,224))
+    img = image.load_img(os.path.join(settings.UPLOAD_FOLDER, image_name), target_size = (224,224))
     x = image.img_to_array(img)
     x_batch = np.expand_dims(x, axis=0)
     x_batch = preprocess_input(x_batch)
@@ -54,7 +51,7 @@ def predict(image_name):
     
     _, class_name, pred_probability = decode_predictions(preds, top=1)[0][0]
     
-    pred_probability = round(pred_probability, 4)
+    pred_probability = round(float(pred_probability), 4)
     
     return class_name, pred_probability
 
@@ -74,7 +71,7 @@ def classify_process():
         # Inside this loop you should add the code to:
         #   1. Take a new job from Redis
         queue_name, msg = db.brpop(settings.REDIS_QUEUE)
-        msg = json.loads(msg)
+        msg = json.loads(msg.decode("utf-8"))
         #   2. Run your ML model on the given data
         model_predictions = predict(msg["image_name"])
         #   3. Store model prediction in a dict with the following shape:

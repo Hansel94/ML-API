@@ -1,12 +1,12 @@
 FROM python:3.8.13 as base
 
-ARG UID
-ARG GID
+#ARG UID
+#ARG GID
 
 # Add a non-root user
-RUN addgroup --gid $GID model_image
-RUN adduser --disabled-login --geco '' --uid $UID --gid $GID model_image
-USER model_image
+#RUN addgroup --gid $GID model_image
+#RUN adduser --disabled-login --geco '' --uid $UID --gid $GID model_image
+#USER model_image
 
 # Append /home/app/.local/bin/ to PATH variable because
 # gunicorn is installed there.

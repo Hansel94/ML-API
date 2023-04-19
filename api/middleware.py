@@ -30,14 +30,11 @@ def model_predict(image_name):
         Model predicted class as a string and the corresponding confidence
         score as a number.
     """
-    prediction = None
-    score = None
-
     # Assign an unique ID for this job and add it to the queue.
     # We need to assing this ID because we must be able to keep track
     # of this particular job across all the services
     # TODO
-    job_id = str(uuid.uuid4())
+    job_id = str(uuid4())
 
     # Create a dict with the job data we will send through Redis having the
     # following shape:
